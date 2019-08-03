@@ -1,0 +1,19 @@
+{
+    "name": "dizpay/dizpay-php-sdk",
+    "description": "A Dead Simple SDK for DizPay",
+    "type": "library",
+    "authors": [
+        {
+            "name": "shellvon",
+            "email": "iamshellvon@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "DizPay\\": "src/"
+        }
+    }
+}
