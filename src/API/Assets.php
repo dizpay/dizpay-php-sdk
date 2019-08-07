@@ -12,11 +12,12 @@ use DizPay\Common\BaseAPI;
 /**
  * Class Assets
  *
- * @method $this list(array $payloads) According to arguments and inquiry crypto balance record of member.
+ * @method $this list(array $payloads)
  *
  * @package DizPay\Api
  */
 class Assets extends BaseAPI
 {
     protected $prefix = 'v2/member/assets';
+
 }

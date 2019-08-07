@@ -13,6 +13,7 @@ use DizPay\Common\BaseAPI;
  * Class Checkout
  *
  * @method $this invoice(array $payloads)
+ *
  * @package DizPay\Api
  */
 class Checkout extends BaseAPI

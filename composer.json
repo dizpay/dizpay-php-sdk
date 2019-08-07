@@ -1,6 +1,6 @@
 {
     "name": "dizpay/dizpay-php-sdk",
-    "description": "A Dead Simple SDK for DizPay",
+    "description": "The official PHP library for the DizPay API 2.0",
     "type": "library",
     "authors": [
         {

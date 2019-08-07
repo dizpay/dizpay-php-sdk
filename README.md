@@ -4,7 +4,7 @@
 
 This repo contains the open source PHP SDK that allows you to access [DizPay](https://www.dizpay.com/) API from your PHP app.
 
-Here are few type api in the SDK:
+SDK apis are organized by 4 groups::
 
 + Assets API
 + Checkout API
@@ -19,7 +19,14 @@ Here are few type api in the SDK:
 
 # Usage
 
-The [sample](./sample) are good place to start. 
+
+DizPay SDK can integrate with multi framework, such as [Laravel](https://laravel.com/), [Lumen](https://lumen.laravel.com/) and [ThinkPHP](http://www.thinkphp.cn/), and so on.
+
+All you need to do is 1) install the SDK deps with `composer` by use command show below:
+
+`composer install dizpay/dizpay-php-sdk`
+
+2) Next you just need to setup like this:
 
 ```php
 require_once __DIR__.'/../vendor/autoload.php';
@@ -27,7 +34,7 @@ $profile = new \DizPay\DizPayProfile('YOUR_APP_ID', 'YOUR_APP_KEY');
 $checkout = \DizPay\DizPayAPIFactory::checkout($profile);
 ```
 
-To make [API](https://www.dizpay.com/en/docs) calls:
+3) To make [API](https://www.dizpay.com/en/docs) calls:
 
 ```php
 
@@ -55,7 +62,26 @@ echo 'Checkout API Call Result:' . ($invoice->isSuccessful() ?  'Successful' : '
 
 ```
 
+The [sample](./sample) are good place to start.
+
+
+
 # SDK Documents
+
+
+There are two ways to integrate DizPay SDK: `checkout` and `api`.
+* `checkout` is our built-in integration, including default UI.
+* `api` is a native way, in this way you need to implement your own UI.
+
+### Checkout
+
+By `checkout`, you just need to call `checkout::invoice` api, which returns a pay URL address. You need to guide your user to visit it. When user finishes paying, DizPay will notify the corresponding result to you by both sync (via `redirect_url`) and async (via `notify_url`) notifications.
+* Sync notification: does not take any arguments, you should always treat it as success whenever it reaches
+* Async notification: DizPay will `POST` payStatus/amount/orderNo to the address(`notify_url`)
+
+#### API
+Using this way means you need to implement your own cashier procedure with DizPay [API Reference](https://www.dizpay.com/en/docs). The procedure is quite complicated.
+
 
 There are two ways to create api instance.
 
@@ -75,10 +101,10 @@ $rates = \DizPay\DizPayAPIFactory::rates($profile);
 
 $profile =  new \DizPay\DizPayProfile('YOUR_APP_ID', 'YOUR_APP_KEY');
 
-$assets = \DizPay\Api\Assets($profile);
-$chekout = \DizPay\Api\Checkout($profile);
-$orders = \DizPay\Api\Orders($profile);
-$rates = \DizPay\Api\Rates($profile);
+$assets = new \DizPay\Api\Assets($profile);
+$chekout = new \DizPay\Api\Checkout($profile);
+$orders = new \DizPay\Api\Orders($profile);
+$rates = new \DizPay\Api\Rates($profile);
 
 ``` 
 
