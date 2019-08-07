@@ -20,5 +20,5 @@ class Checkout extends BaseAPI
 {
     protected $baseUri = 'https://checkout.dizpay.com/';
 
-    protected $prefix = 'api';
+    protected $prefix = 'v1';
 }
