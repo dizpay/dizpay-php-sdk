@@ -40,7 +40,7 @@ class DizPayController extends BaseController
         $this->validate($request, $rules);
 
         // replace with your app_id && app_key
-        $checkout = new Checkout(new DizPayProfile('YOUR_APP_ID', 'YOUR_APP_KEY'));
+        $checkout = new Checkout(new DizPayProfile(YOUR_APP_ID, YOU_APP_KEY));
 
         // replace with your `ngrok http <port>` result.
         $notifyUrl = url('/api/diz-pay/webhook');
