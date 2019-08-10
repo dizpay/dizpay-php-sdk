@@ -24,7 +24,7 @@ DizPay SDK can integrate with multi framework, such as [Laravel](https://laravel
 
 All you need to do is 1) install the SDK deps with `composer` by use command show below:
 
-`composer install dizpay/dizpay-php-sdk`
+`composer require dizpay/dizpay-php-sdk`
 
 2) Next you just need to setup like this:
 
