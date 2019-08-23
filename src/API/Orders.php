@@ -9,15 +9,13 @@ namespace DizPay\Api;
 use DizPay\Common\BaseAPI;
 
 /**
- * Class Orders
+ * Orders API
  *
- * @method $this createWithdrawalOrder(array $payloads)
- * @method $this createInternalOrder(array $payloads)
  * @method $this createChargeOrder(array $payloads) params: ['number' => '', 'currency_code' => '', 'erc20_token' => '0/1', 'amount' => '']
- * @method $this queryOrder(array $payloads)
+ * @method $this queryOrder(array $payloads) params: ['number' => 'order number']
  * @method $this createPayoutOrder(array $payloads) According to demand, set arguments and create merchant order.
- * @method $this payOrder(array $payloads)
- * @method $this cancelOrder(array $payloads)
+ * @method $this payOrder(array $payloads) params: ['number' => 'order number']
+ * @method $this cancelOrder(array $payloads) params: ['number' => 'order number']
  *
  * @package DizPay\Api
  */

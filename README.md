@@ -112,13 +112,13 @@ API contains two property named `baseUri` and `prefix`, Each API is send as: `ba
 
 Thanks to PHP magic method `__call`, which can convert the method name (SDK API name, which is camelcase ) to snakecase and use it as the actual request endpoint.
 
-For example. `$order->createWithdrawalOrder(...)` will be converted to `create_withdrawal_order`.  
+For example. `$order->createChargeOrder(...)` will be converted to `create_charge_order`.
 
 So, the finally request is:
 
 
 ```bash
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d <YOUR_FORM_DATA>  https://api.dizpay.com/v2/member/orders/create_withdrawal_order
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d <YOUR_FORM_DATA>  https://api.dizpay.com/v2/member/orders/create_charge_order
 ```
 Source Code: 
 

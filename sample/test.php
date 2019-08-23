@@ -8,6 +8,22 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 $profile = new \DizPay\DizPayProfile('YOUR_APP_ID', 'YOUR_APP_KEY');
 
+// If you want to check the callback payloads:
+$r = $profile->verifySignature(
+    [
+        'number' => '8eb9bc53-75ea-4142-8a91-af89d2246379',
+        'currency_code' => 'USDT',
+        'amount' => '100.00000000',
+        'paid_amount' => '100.00000000',
+        'extra' => '',
+        'erc20_token' => 0,
+        'status' => 2,
+        'signature' => 'e27573e4915b052ebb0db96611ac9f4f'
+    ]
+);
+
+echo 'Payload check result:' . var_export($r, true) . PHP_EOL;
+
 // same as \DizPay\DizPayAPIFactory::checkout($profile);
 $checkout = new \DizPay\Api\Checkout($profile);
 

@@ -64,4 +64,23 @@ class DizPayProfile
             'app_key' => $this->appKey,
         ];
     }
+
+    /**
+     *
+     * @param array $payloads
+     *
+     * @return bool
+     */
+    public function verifySignature(array $payloads)
+    {
+        if (empty($payloads['signature'])) {
+            return false;
+        }
+        $signature = $payloads['signature'];
+        unset($payloads['signature']);
+        $payloads = array_merge($payloads, $this->toArray());
+        ksort($payloads);
+        $plainText = urldecode(http_build_query($payloads));
+        return $signature === md5($plainText);
+    }
 }
