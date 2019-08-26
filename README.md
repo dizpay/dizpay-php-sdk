@@ -2,9 +2,9 @@
 # DizPay PHP SDK
 
 
-This repo contains the open source PHP SDK that allows you to access [DizPay](https://www.dizpay.com/) API from your PHP app.
+The open source PHP SDK that allows you to access [DizPay](https://www.dizpay.com/) API from your PHP app.
 
-SDK apis are organized by 4 groups::
+SDK APIs are grouped into:
 
 + Assets API
 + Checkout API
@@ -20,13 +20,15 @@ SDK apis are organized by 4 groups::
 # Usage
 
 
-DizPay SDK can integrate with multi framework, such as [Laravel](https://laravel.com/), [Lumen](https://lumen.laravel.com/) and [ThinkPHP](http://www.thinkphp.cn/), and so on.
+DizPay SDK integrates with multiples frameworks such as [Laravel](https://laravel.com/), [Lumen](https://lumen.laravel.com/) and [ThinkPHP](http://www.thinkphp.cn/).
 
-All you need to do is 1) install the SDK deps with `composer` by use command show below:
+To get it up and running:
+
+1) Install the SDK deps with `composer`.
 
 `composer require dizpay/dizpay-php-sdk:dev-master`
 
-2) Next you just need to setup like this:
+2) Set it up using:
 
 ```php
 require_once __DIR__.'/../vendor/autoload.php';
@@ -62,7 +64,7 @@ echo 'Checkout API Call Result:' . ($invoice->isSuccessful() ?  'Successful' : '
 
 ```
 
-The [sample](./sample) are good place to start.
+The [samples](./sample) are good place to start.
 
 
 
@@ -70,20 +72,21 @@ The [sample](./sample) are good place to start.
 
 
 There are two ways to integrate DizPay SDK: `checkout` and `api`.
-* `checkout` is our built-in integration, including default UI.
-* `api` is a native way, in this way you need to implement your own UI.
+* `checkout` is our built-in integration, including the default UI.
+* `API` is the native way, where you need to implement your own UI.
 
 ### Checkout
 
-By `checkout`, you just need to call `checkout::invoice` api, which returns a pay URL address. You need to guide your user to visit it. When user finishes paying, DizPay will notify the corresponding result to you by both sync (via `success_url`) and async (via `notify_url`) notifications.
+To use `checkout`, you just need to call the `checkout::invoice` api, which returns a pay URL address. Simply provide the URL to the user.
+
+When the user finishes the payment, DizPay notifies you with the corresponding result by both the sync (via `success_url`) and async (via `notify_url`) notifications.
 * Sync notification: does not take any arguments, you should always treat it as success whenever it reaches
 * Async notification: DizPay will `POST` payStatus/amount/orderNo to the address(`notify_url`)
 
 #### API
-Using this way means you need to implement your own cashier procedure with DizPay [API Reference](https://www.dizpay.com/en/docs). The procedure is quite complicated.
+Using this method, you need to implement your own cashier procedure with DizPay [API Reference](https://www.dizpay.com/en/docs). The procedure is quite complicated.
 
-
-There are two ways to create api instance.
+There are two ways to create API instance.
 
 + By Factory
 ```php
@@ -106,7 +109,7 @@ $chekout = new \DizPay\Api\Checkout($profile);
 $orders = new \DizPay\Api\Orders($profile);
 $rates = new \DizPay\Api\Rates($profile);
 
-``` 
+```
 
 API contains two property named `baseUri` and `prefix`, Each API is send as: `baseUri + prefix + endPoint`, the `endPoint` is resolved by method name.
 
@@ -114,17 +117,17 @@ Thanks to PHP magic method `__call`, which can convert the method name (SDK API 
 
 For example. `$order->createChargeOrder(...)` will be converted to `create_charge_order`.
 
-So, the finally request is:
+So, the final request is:
 
 
 ```bash
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d <YOUR_FORM_DATA>  https://api.dizpay.com/v2/member/orders/create_charge_order
 ```
-Source Code: 
+Source Code:
 
 ```php
     // Source Code at src/DizPay/Common/BaseAPI.php
-    
+
     public function __call($name, $arguments)
     {
         $endPoint = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $name));
