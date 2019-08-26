@@ -182,7 +182,7 @@ DizPay API returns the following error codes in response if the response code is
 | 1001       | Something does not exist                           |
 | 1002       | Something does not match                           |
 | 1003       | Something is invalid                               |
-| 1004       | Failedto send sms                                  |
+| 1004       | Failed to send sms                                 |
 | 1005       | Request too frequently                             |
 | 1006       | Something is expired                               |
 | 1008       | Balance is not enough                              |
