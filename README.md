@@ -4,6 +4,11 @@
 
 The open source PHP SDK that allows you to access [DizPay](https://www.dizpay.com/) API from your PHP app.
 
+# Table of Contents
+
+[Pre requisites](#Prerequisites)
+[Usage](#Usage)
+
 SDK APIs are grouped into:
 
 + Assets API
