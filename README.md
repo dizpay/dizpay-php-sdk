@@ -8,10 +8,11 @@ The open source PHP SDK that allows you to access [DizPay](https://www.dizpay.co
 
 + [Introduction](#Introduction)
 + [Pre requisites](#Prerequisites)
-+ [Usage](#Usage)
 + [Installation](#Installation)
 + [Usage](#Usage)
-+ [Checkouts](#Checkout)
+  + [Checkout method](#Checkout)
+  + [API method](#API)
+  + [Sample code](#Sample code)
 + [Additional Reference](#Reference)
 
 # Introduction
