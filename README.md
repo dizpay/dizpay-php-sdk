@@ -12,7 +12,7 @@ The open source PHP SDK that allows you to access [DizPay](https://www.dizpay.co
 + [Usage](#Usage)
   + [Checkout method](#Checkout)
   + [API method](#API)
-  + [Sample code](#Sample code)
+  + [Sample code](#Sample-code)
 + [Additional Reference](#Reference)
 
 # Introduction
