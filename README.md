@@ -2,31 +2,33 @@
 # DizPay PHP SDK
 
 
-The open source PHP SDK that allows you to access [DizPay](https://www.dizpay.com/) API from your PHP app.
+The open source PHP SDK that allows you to access the [DizPay](https://www.dizpay.com/) API from your PHP app.
 
 # Table of Contents
 
 + [Introduction](#Introduction)
-+ [Pre requisites](#Prerequisites)
++ [Prerequisites](#Prerequisites)
 + [Installation](#Installation)
 + [Usage](#Usage)
   + [Checkout method](#Checkout)
   + [API method](#API)
   + [Sample code](#Sample-code)
+  + [Response codes](#Response-codes)
 + [Additional Reference](#Reference)
 
 # Introduction
 
-Use the APIs provided by DizPay to integrate BTC, ETH, LTC, DASH, USDT, GUSD, PAX, TUSD and USDC payments into your application. You can integrate the DizPay PHP SDK into multiple PHP frameworks such as [Laravel](https://laravel.com/), [Lumen](https://lumen.laravel.com/) and [ThinkPHP](http://www.thinkphp.cn/).
+DizPay APIs let you integrate BTC, ETH, LTC, DASH, USDT, GUSD, PAX, TUSD and USDC payments into your online application. Using the DizPay PHP SDK, you can integrate DizPay into multiple PHP frameworks such as [Laravel](https://laravel.com/), [Lumen](https://lumen.laravel.com/) and [ThinkPHP](http://www.thinkphp.cn/).
 
-Before starting to use DizPay, make sure that you obtain your app ID and your app key from [DizPay](https://www.dizpay.com).
+Before you start using DizPay, make sure that you obtain your **App ID** and your **App Key** from [DizPay](https://www.dizpay.com) by signing up to the website.
 
-The SDK APIs are grouped into:
+The DizPay SDK APIs are grouped into:
 + Assets API
 + Checkout API
 + Orders API
 + Rates API
 
+You can use these to send requests and get responses from DizPay. Refer to the [API Reference](https://www.dizpay.com/en/docs) manual for details on the request and response details for each of them.
 
 # Prerequisites
 
@@ -38,16 +40,18 @@ Install using `composer`:
 
 `composer require dizpay/dizpay-php-sdk:dev-master`
 
-Once the installation is complete, use the following lines of code in your PHP file to set up DizPay:
+# Usage
+
+Use the following lines of code in your PHP file to set up DizPay:
 
 ```php
 require_once __DIR__.'/../vendor/autoload.php';
 $profile = new \DizPay\DizPayProfile('YOUR_APP_ID', 'YOUR_APP_KEY');
 ```
 
-# Usage
+Once you complete the setup, you can use the `profile` variable created above to send requests to the DizPay APIs.
 
-There are two ways to use the DizPay SDK: `checkout` and `api`.
+There are two ways to use the DizPay SDK: `checkout` and `API`.
 
 * `checkout` is the default integration method, where you can use the DizPay UI.
 
@@ -55,16 +59,16 @@ There are two ways to use the DizPay SDK: `checkout` and `api`.
 
 ### Checkout
 
-To use `checkout`, call the `checkout::invoice` method, which returns a pay URL address. Simply add the provided URL to your webpage where it is accessible for all your users.
+To use `checkout`, call the `checkout::invoice` method. It returns a pay URL address. Simply add the provided URL to your webpage where it is accessible for all your users.
 
-When the user finishes the payment, DizPay notifies you with the corresponding result by both the sync (via `success_url`) and async (via `notify_url`) notifications.
-* Sync notification: It does not take any arguments, you should always treat it as success whenever it reaches
+When the user finishes the payment, DizPay notifies you with the corresponding result via both the sync (via `success_url`) and async (via `notify_url`) notifications.
+* Sync notification: It does not take any arguments, you should always treat it as success when it reaches.
 * Async notification: DizPay sends you a `POST` notification payStatus/amount/orderNo to the address set in the `notify_url` key while creating the API.
 
 ### API
 Using this method, you need to implement your own cashier procedure with DizPay [API Reference](https://www.dizpay.com/en/docs).
 
-There are two ways to create API instance.
+There are two ways to create an API instance.
 
 + By Factory
 ```php
@@ -156,6 +160,34 @@ echo 'Checkout API Call Result:' . ($invoice->isSuccessful() ?  'Successful' : '
 ```
 
 To get you started, you can check out other [samples](./sample) API calls.
+
+### Response codes
+
+Once you send requests, the DizPay APIs send you a code in the response. The most commonly returned response codes are:
+
+| Responce Code | Error                 | Description                                |
+|---------------|-----------------------|--------------------------------------------|
+| 200           | OK                    | Request succeeded                          |
+| 400           | Bad                   | Request request failed                     |
+| 401           | Unauthorized          | App ID is invalid or blocked               |
+| 403           | Forbidden             | Signing failure                            |
+| 500           | Internal Server Error | Internal server error occurred             |
+
+
+DizPay API returns the following error codes in response if the response code is `400`:
+
+| Error Code | Description                                        |
+|------------|----------------------------------------------------|
+| 1000       | Field Syntax Error (e.g. Required, Range, Type)    |
+| 1001       | Something does not exist                           |
+| 1002       | Something does not match                           |
+| 1003       | Something is invalid                               |
+| 1004       | Failedto send sms                                  |
+| 1005       | Request too frequently                             |
+| 1006       | Something is expired                               |
+| 1008       | Balance is not enough                              |
+| 1010       | Failed to send email                               |
+| 1051       | Wallet Server went wrong                           |
 
 # Reference
 
