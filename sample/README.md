@@ -1,8 +1,17 @@
 # DizPay PHP SDK Example
 
-> The example shown here is only applicable for the Laravel PHP framework. However, you can apply the same concepts for any other framework of your choice.
+The example shown here is only applicable for the Laravel PHP framework. However, you can apply the same concepts for any other framework of your choice.s
 
-### Step 1: Create the DizPay controller
+### Table of Contents
+
++ [Step 1: Create the DizPay Controller](#step-1-create-the-dizpay-controller)
++ [Step 2: Add the `Route` config](#step-2-add-the-route-config)
++ [Step 3: Start an HTTP Server](#step-3-start-an-http-server)
++ [Step 4: Payment](#step-4-payment)
++ [Webhook Logs](#webhook-logs)
++ [Reference](#reference)
+
+### Step 1: Create the DizPay Controller
 
 Create a controller named `DizPayController` inside `App\Http\Controllers`
 
@@ -127,8 +136,13 @@ curl -H 'Accept: application/json' -H 'Content-Type: application/json' --data-bi
 
 On successful response, `paymentUrl` is displayed on the STDOUT.
 
-> Once the payment is complete, a webhook log is written in `storage/logs/***.log`.
+### Webhook Logs
+
+Once the payment is successfully complete, a webhook log is written in `storage/logs/***.log`.
 
 > If you want to test the webhook in an internal network address, such as the `localhost` or `192.168.0.1`, use `ngrok` to make your local address available over the internet.
+
+
+### Reference
 
 For full source code, check out [this](./test.php) URL.
