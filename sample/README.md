@@ -1,6 +1,6 @@
 # DizPay PHP SDK Example
 
-The example shown here is only applicable for the Laravel PHP framework. However, you can apply the same concepts for any other framework of your choice.s
+The example shown here is only applicable for the Laravel PHP framework. However, you can apply the same concepts for any other framework of your choice.
 
 ### Table of Contents
 
@@ -145,4 +145,4 @@ Once the payment is successfully complete, a webhook log is written in `storage/
 
 ### Reference
 
-For full source code, check out [this](./test.php) URL.
+For the full source code, check out [this](./test.php) URL.
