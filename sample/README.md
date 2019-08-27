@@ -1,14 +1,19 @@
-# DizPay SDK Samples
+# DizPay PHP SDK Example
 
+The example shown here is only applicable for the Laravel PHP framework. However, you can apply the same concepts for any other framework of your choice.
 
-Simple usage you can see the source code [here](./test.php)
+### Table of Contents
 
++ [Step 1: Create the DizPay Controller](#step-1-create-the-dizpay-controller)
++ [Step 2: Add the `Route` config](#step-2-add-the-route-config)
++ [Step 3: Start an HTTP Server](#step-3-start-an-http-server)
++ [Step 4: Payment](#step-4-payment)
++ [Webhook Logs](#webhook-logs)
++ [Reference](#reference)
 
-## Laravel example
+### Step 1: Create the DizPay Controller
 
-**First, create a controller**
-
-create a new controller named `DizPayController` in `app\Http\Controllers`
+Create a controller named `DizPayController` inside `App\Http\Controllers`
 
 
 ```php
@@ -101,12 +106,11 @@ class DizPayController extends BaseController
 
 ```
 
-**Second, add route config**
+### Step 2: Add the `Route` config
 
+Create the following config in `Routes\api.php`.
 
 ```php
-
-// dizpay in routes/api.php
 
 Route::group(['prefix' => 'diz-pay'], function() {
     Route::post('checkout', 'DizPayController@checkout');
@@ -115,26 +119,30 @@ Route::group(['prefix' => 'diz-pay'], function() {
 
 ```
 
-**Last, start a http server and pay it**
+### Step 3: Start an HTTP Server
 
-
-use `artisan` you can start a dev http server:
+Use `artisan` to start an HTTP server:
 
 `php artisan serve --port 3333`
 
-then, you can post your form data to `/api/diz-pay/checkout` by use `curl`:
+### Step 4: Payment
+
+Use the `curl` keyword to POST any form data to the URL `/api/diz-pay/checkout`
 
 ```bash
 
 curl -H 'Accept: application/json' -H 'Content-Type: application/json' --data-binary '{"amount":10,"currency":"USD"}'  http://127.0.0.1/api/diz-pay/checkout
 ```
 
-If everything is OK, you will be see a `paymentUrl` on the STDOUT. you call open it with your favorite browser.
+On successful response, `paymentUrl` is displayed on the STDOUT.
 
-When your payment is complete, you will be got a webhook log in  `storage/logs/***.log`.
+### Webhook Logs
 
-That's all.
+Once the payment is successfully complete, a webhook log is written in `storage/logs/***.log`.
 
-### Please note
+> If you want to test the webhook in an internal network address, such as the `localhost` or `192.168.0.1`, use `ngrok` to make your local address available over the internet.
 
-> If you want to test webhook with an internal network address(e.g. `localhost`, `192.168.0.1`), you need to use `ngrok` to make your local address be able to visit from outer network.
+
+### Reference
+
+For the full source code, check out [this](./test.php) URL.
